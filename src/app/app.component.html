@@ -6,7 +6,7 @@
           <h4>Select Country</h4>
           <mat-form-field appearance="fill">
             <mat-label>Country</mat-label>
-            <mat-select>
+            <mat-select (selectionChange)="countrySelected($event)">
               <mat-option *ngFor="let country of countries" [value]="country.value">
                 {{country.viewValue}}
               </mat-option>
@@ -24,6 +24,8 @@
             <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
           </mat-form-field>
+
+          <button (click)="fetchAPI()">FETCH API</button>
           
           
         </div>

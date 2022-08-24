@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { InflationService } from '../services/inflation.service';
 
 @Component({
   selector: 'app-country',
@@ -9,14 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class CountryComponent implements OnInit {
 
   posts: any | undefined;
-  constructor(private http: HttpClient) {
-    http.get('https://www.statbureau.org/get-data-json?country=turkey')
-      .subscribe(response => {
-        this.posts = response;
-      })
-   }
+
+  constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
+    this.inflationService.inflationRates$.subscribe(rates => {
+      console.log("country component inflationRates triggered!");
+    })
   }
 
 }

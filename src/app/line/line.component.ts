@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { InflationService } from '../services/inflation.service';
 
 @Component({
   selector: 'app-line',
@@ -24,4 +25,12 @@ export class LineComponent  {
     }]
   }
  
+
+  constructor(private inflationService: InflationService) {}
+
+  ngOnInit(): void {
+    this.inflationService.inflationRates$.subscribe(rates => {
+      console.log("line component inflationRates triggered!");
+    })
+  }
 }
