@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BarComponent } from './bar/bar.component';
+import { CountryComponent } from './country/country.component';
 import { HomeComponent } from './home/home.component';
 import { LineComponent } from './line/line.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'line', component: LineComponent },
   { path: 'bar', component: BarComponent },
   { path:'pie', component:PieComponent},
-  { path: '**', component: NotFoundComponent}
+  { path: '**', component: NotFoundComponent},
+  {path:'country', component:CountryComponent}
 ];
 
 @NgModule({

@@ -15,6 +15,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { CountryComponent } from './country/country.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,7 +27,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     BarComponent,
     PieComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatGridListModule,
+    HttpClientModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
