@@ -2,7 +2,9 @@
   <mat-tab label="Charts">
     <div class="container my-5">
       <div class="row">
+        <!-- Filter start -->
         <div class="col-md-3 my-5">
+          <!-- country filter start -->
           <h4>Select Country</h4>
           <mat-form-field appearance="fill">
             <mat-label>Country</mat-label>
@@ -12,6 +14,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <!-- country filter end -->
+          <!-- date filter start -->
           <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>First campaign</mat-label>
             <mat-date-range-input
@@ -24,20 +28,28 @@
             <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
           </mat-form-field>
+          <!-- date filter end -->
 
           <button (click)="fetchAPI()">FETCH API</button>
           
           
         </div>
+        <!-- Filter end -->
+        <!-- Line chart start -->
         <div class="col-md-3">
           <app-line></app-line>
         </div>
+        <!-- line chart end -->
+        <!-- pie chart start -->
         <div class="col-md-3">
           <app-pie></app-pie>
         </div>
+        <!-- pie chart end -->
+        <!-- bar chart start -->
         <div class="col-md-3">
           <app-bar></app-bar>
         </div>
+        <!-- bar chart end -->
       </div>
     </div>
     

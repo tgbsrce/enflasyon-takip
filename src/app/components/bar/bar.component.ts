@@ -1,13 +1,14 @@
 
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { InflationService } from 'src/app/services/inflation.service';
 
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
   styleUrls: ['./bar.component.css']
 })
-export class BarComponent {
+export class BarComponent implements OnInit {
 
   barChartOption: EChartsOption = {
     xAxis: {
@@ -25,5 +26,12 @@ export class BarComponent {
     ]
   }
 
+  constructor(private inflationService: InflationService) {}
+
+  ngOnInit(): void {
+    this.inflationService.inflationRates$.subscribe(rates => {
+      console.log("bar component inflationRates triggered!");
+    })
+  }
 
 }

@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { LineComponent } from './components/line/line.component';
 import { BarComponent } from './components/bar/bar.component';
 import { PieComponent } from './components/pie/pie.component';
-import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     LineComponent,
     BarComponent,
     PieComponent,
-    HomeComponent,
     NotFoundComponent,
     CountryComponent
   ],

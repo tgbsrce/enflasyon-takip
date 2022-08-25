@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { InflationService } from 'src/app/services/inflation.service';
 
 @Component({
   selector: 'app-pie',
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-export class PieComponent {
+export class PieComponent implements OnInit {
 
   pieChartOption: EChartsOption = {
     title: {
@@ -43,5 +44,13 @@ export class PieComponent {
       }
     ]
   };
+  
+  constructor(private inflationService: InflationService) {}
+
+  ngOnInit(): void {
+    this.inflationService.inflationRates$.subscribe(rates => {
+      console.log("pie component inflationRates triggered!");
+    })
+  }
 
 }
