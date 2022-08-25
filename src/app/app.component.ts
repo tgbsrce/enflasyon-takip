@@ -37,5 +37,6 @@ export class AppComponent implements OnInit {
 
   countrySelected(event: any) {
     console.log(event)
+    this.fetchAPI()
   }
 }

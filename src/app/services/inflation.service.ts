@@ -10,7 +10,7 @@ export class InflationService {
   inflationRates$ = this.inflationRates.asObservable();
 
   constructor(private http: HttpClient) { }
-
+  
   getInflationRates() {
     this.http.get('https://www.statbureau.org/get-data-json?country=turkey')
       .subscribe(response => {

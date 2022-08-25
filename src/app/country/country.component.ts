@@ -13,8 +13,8 @@ export class CountryComponent implements OnInit {
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
-    this.inflationService.inflationRates$.subscribe(rates => {
-      console.log("country component inflationRates triggered!");
+    this.inflationService.inflationRates$.subscribe(response => {
+     this.posts=response;
     })
   }
 
