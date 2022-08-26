@@ -16,6 +16,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CountryComponent } from './country/country.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -31,11 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatTabsModule,
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    MatInputModule,
     MatGridListModule,
     HttpClientModule,
     NgxEchartsModule.forRoot({

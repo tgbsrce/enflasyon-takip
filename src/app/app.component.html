@@ -1,9 +1,10 @@
+
 <mat-tab-group animationDuration="1500ms">
   <mat-tab label="Charts">
-    <div class="container my-5">
+    <div class="container my-3">
       <div class="row">
         <!-- Filter start -->
-        <div class="col-md-3 my-5">
+        <div class="col-md-3 align-self-center">
           <!-- country filter start -->
           <h4>Select Country</h4>
           <mat-form-field appearance="fill">
@@ -16,18 +17,39 @@
           </mat-form-field>
           <!-- country filter end -->
           <!-- date filter start -->
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>First campaign</mat-label>
-            <mat-date-range-input
+          <h4>Select Date Range</h4>
+          <form [formGroup]="dateRangeForm" (ngSubmit)="onFormSubmit()">
+
+            <mat-form-field>
+        
+              <mat-label>Enter Session Period</mat-label>
+        
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="From Date" required formControlName="fromDate">
+                <input matEndDate placeholder="To Date" required formControlName="toDate">
+              </mat-date-range-input>
+        
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              
+        
+            </mat-form-field>
+            <br>
+            <button class="btn btn-secondary">Submit</button>
+        
+        </form>
+          <!-- <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Date</mat-label>
+            <mat-date-range-input  
               [formGroup]="campaignOne"
               [rangePicker]="campaignOnePicker">
-              <input matStartDate placeholder="Start date" formControlName="start">
-              <input matEndDate placeholder="End date" formControlName="end">
+              <input matStartDate  placeholder="Start date" formControlName="start">
+              <input matEndDate  placeholder="End date" formControlName="end">
             </mat-date-range-input>
             <mat-hint>MM/DD/YYYY  MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-          </mat-form-field>
+          </mat-form-field> -->
           <!-- date filter end -->
 
           
