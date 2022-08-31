@@ -15,6 +15,7 @@ export class CountryComponent implements OnInit {
   ngOnInit(): void {
     this.inflationService.inflationRates$.subscribe(response => {
      this.posts=response;
+     
     })
   }
 

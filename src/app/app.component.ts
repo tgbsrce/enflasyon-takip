@@ -20,39 +20,39 @@ export class AppComponent implements OnInit {
   title = 'inflation-tracker';
  
   countries= countries
-  dateRangeForm!: FormGroup;
-
-  campaignOne = new FormGroup({
-    start: new FormControl(new Date(year, month)),
-    end: new FormControl(new Date(year, month)),
-  });
-
-  constructor(private inflationService: InflationService ,private formBuilder: FormBuilder) {}
   
-  range = new FormGroup({
-    fromDate: new FormControl('', Validators.required),
-    toDate: new FormControl('', Validators.required)
+
+  dateRangeForm = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
   });
+
+  constructor(private inflationService: InflationService) {}
+  
+ 
   ngOnInit(): void {
     this.inflationService.getInflationRates();
-    this.dateRangeForm = this.formBuilder.group({
-      fromDate: new FormControl('', Validators.required),
-      toDate: new FormControl('', Validators.required)
-    });
+    this.dateRangeForm.valueChanges.subscribe((date)=>{
+     if(date.start && date.end){
+      console.log("start "+date.start , "end "+ date.end )
+      this.fetchAPI("turkey",date.start,date.end)
+     }
+    })
+   
   }
-  onFormSubmit() {
-    console.log('Is Form Invalid', this.dateRangeForm.invalid);
+  onFormSubmit(event: any) {
+    console.log(event)
     console.log(this.dateRangeForm.value);
-    
+        
   }
 
-  fetchAPI(): void {
-    this.inflationService.getInflationRates();
+  fetchAPI(country:string,start:string,end:string): void {
+    this.inflationService.getInflationRates(country,start,end);
   }
 
   countrySelected(event: any) {
     console.log(event.value)
-    this.fetchAPI()
+    this.fetchAPI(event.value,"","")
   }
   
 }

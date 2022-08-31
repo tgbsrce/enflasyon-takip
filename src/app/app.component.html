@@ -18,42 +18,26 @@
           <!-- country filter end -->
           <!-- date filter start -->
           <h4>Select Date Range</h4>
-          <form [formGroup]="dateRangeForm" (ngSubmit)="onFormSubmit()">
+          <form [formGroup]="dateRangeForm">
 
             <mat-form-field>
         
               <mat-label>Enter Session Period</mat-label>
         
-              <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="From Date" required formControlName="fromDate">
-                <input matEndDate placeholder="To Date" required formControlName="toDate">
+              <mat-date-range-input [rangePicker]="picker"  >
+                <input matStartDate placeholder="From Date" required formControlName="start">
+                <input matEndDate placeholder="To Date" required formControlName="end">
               </mat-date-range-input>
         
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-date-range-picker  #picker></mat-date-range-picker>
               
         
             </mat-form-field>
-            <br>
-            <button class="btn btn-secondary">Submit</button>
+            
+           
         
         </form>
-          <!-- <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Date</mat-label>
-            <mat-date-range-input  
-              [formGroup]="campaignOne"
-              [rangePicker]="campaignOnePicker">
-              <input matStartDate  placeholder="Start date" formControlName="start">
-              <input matEndDate  placeholder="End date" formControlName="end">
-            </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY  MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-          </mat-form-field> -->
-          <!-- date filter end -->
-
-          
-          
           
         </div>
         <!-- Filter end -->
@@ -84,37 +68,4 @@
 </mat-tab-group>
 
 
-<!-- <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="nav nav-tabs my-4">
-          <li class="nav-item">
-            <a routerLink="/" class="nav-link" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}"
-            >Home</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="line" class="nav-link" routerLinkActive="active">Line</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="pie" class="nav-link" routerLinkActive="active">Pie</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="bar" class="nav-link" routerLinkActive="active">Bar</a>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <h3 class="text-info my-4">Charts</h3>
-      </div>
-      <div class="col-md-10">
-  
-        <router-outlet></router-outlet>
-  
-      </div>
-    </div>
-  </div> -->
+            
