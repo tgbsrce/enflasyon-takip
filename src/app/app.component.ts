@@ -34,25 +34,18 @@ export class AppComponent implements OnInit {
     this.inflationService.getInflationRates();
     this.dateRangeForm.valueChanges.subscribe((date)=>{
      if(date.start && date.end){
-      console.log("start "+date.start , "end "+ date.end )
-      this.fetchAPI("turkey",date.start,date.end)
+      this.fetchAPI("turkey", date.start, date.end)
      }
     })
    
   }
-  onFormSubmit(event: any) {
-    console.log(event)
-    console.log(this.dateRangeForm.value);
-        
-  }
 
-  fetchAPI(country:string,start:string,end:string): void {
-    this.inflationService.getInflationRates(country,start,end);
+  fetchAPI(country:string,start?:Date,end?:Date): void {
+     this.inflationService.getInflationRates(country,start,end);
   }
 
   countrySelected(event: any) {
-    console.log(event.value)
-    this.fetchAPI(event.value,"","")
+    this.fetchAPI(event.value)
   }
   
 }
