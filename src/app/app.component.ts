@@ -3,6 +3,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InflationService } from './services/inflation.service';
 import { countries} from './models/country.model';
+import { filters } from './models/filter.model';
 
 
 const today = new Date();
@@ -31,17 +32,17 @@ export class AppComponent implements OnInit {
   
  
   ngOnInit(): void {
-    this.inflationService.getInflationRates();
+    this.inflationService.getInflationRates(filters);
     this.dateRangeForm.valueChanges.subscribe((date)=>{
      if(date.start && date.end){
-      this.fetchAPI("turkey", date.start, date.end)
+      this.fetchAPI("turkey")
      }
     })
    
   }
 
-  fetchAPI(country:string,start?:Date,end?:Date): void {
-     this.inflationService.getInflationRates(country,start,end);
+  fetchAPI(Filter: any): void {
+     this.inflationService.getInflationRates(Filter);
   }
 
   countrySelected(event: any) {
