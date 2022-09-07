@@ -20,7 +20,7 @@
           <h4>Select Date Range</h4>
           <form [formGroup]="dateRangeForm">
 
-            <mat-form-field>
+            <mat-form-field (click)="picker.open()">
         
               <mat-label>Enter Session Period</mat-label>
         
