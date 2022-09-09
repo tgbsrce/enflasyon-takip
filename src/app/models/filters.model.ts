@@ -1,11 +1,15 @@
-export class filters {
+export class filters{
 
-    public country ?: string;
+    public country : string;
     public start ?: Date;
     public end ?: Date;
-  static country: string;
   static start: any;
+  static country: any;
   static end: any;
+ 
+ 
+  
+  
   
 
     constructor(country: string, start ?: Date, end ?: Date){
