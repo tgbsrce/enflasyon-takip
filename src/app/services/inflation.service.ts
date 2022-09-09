@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { filters } from '../models/filters.model';
+import { Filters } from '../models/filters.model';
 import { InflationData } from '../models/inflation.model';
 
 
@@ -12,21 +12,19 @@ export class InflationService {
   private inflationRates = new BehaviorSubject<InflationData[]>([]);
   inflationRates$ = this.inflationRates.asObservable();
    
-  
-  filter={
-    country:filters.country,
-    start:filters.start,
-    end:filters.end
-  }
+  filterState = new Filters({});
 
   constructor(private http: HttpClient) { }
   
-  getInflationRates(filters:filters): void {
+  getInflationRates(filters?: Filters): void {
+    if(filters) {
+      this.filterState = { ...this.filterState, ...filters };
+    }
 
-    this.http.get<InflationData[]>('https://www.statbureau.org/get-data-json?country=' +this.filter.country)
+    this.http.get<InflationData[]>('https://www.statbureau.org/get-data-json?country=' + this.filterState.country)
       .subscribe(response => {
 
-        if(!this.filter.start || !this.filter.end) {
+        if(!this.filterState.start || !this.filterState.end) {
           this.inflationRates.next(response);
           return;
           
@@ -34,12 +32,16 @@ export class InflationService {
         
         const filterResponse = response.filter((data) => {
             const inflationDate = new Date(data.MonthFormatted);
-  
-            return inflationDate >= this.filter.start && inflationDate <= this.filter.end
+
+            if(this.filterState.start && this.filterState.end) {
+              return inflationDate >= this.filterState.start && inflationDate <= this.filterState.end
+            }
             
+            return false;
           })
   
         this.inflationRates.next(filterResponse);
+        console.log(filterResponse.length)
         
       })
       

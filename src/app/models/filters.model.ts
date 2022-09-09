@@ -1,21 +1,12 @@
-export class filters{
-
-    public country : string;
-    public start ?: Date;
-    public end ?: Date;
-  static start: any;
-  static country: any;
-  static end: any;
+export class Filters {
+    country? : string;
+    start?: Date;
+    end?: Date;
  
- 
-  
-  
-  
-
-    constructor(country: string, start ?: Date, end ?: Date){
-        this.country = country;
-        this.start = start;
-        this.end = end;
+    constructor(data: any) {
+        this.country = data.country || 'turkey';
+        this.start = data.start || null;
+        this.end = data.end || null;
     } 
 
 }
