@@ -14,7 +14,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { CountryComponent } from './country/country.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -27,8 +26,7 @@ import { FormsModule } from '@angular/forms';
     LineComponent,
     BarComponent,
     PieComponent,
-    NotFoundComponent,
-    CountryComponent
+    NotFoundComponent
   
   ],
   imports: [
