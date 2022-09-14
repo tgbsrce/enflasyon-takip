@@ -17,6 +17,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CountryFilterComponent } from './components/country-filter/country-filter.component';
+import { DateFilterComponent } from './components/date-filter/date-filter.component';
 
 
 
@@ -26,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     LineComponent,
     BarComponent,
     PieComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CountryFilterComponent,
+    DateFilterComponent
   
   ],
   imports: [

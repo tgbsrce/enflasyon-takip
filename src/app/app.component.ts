@@ -6,9 +6,9 @@ import { countries} from './models/country.model';
 import { Filters } from './models/filters.model';
 
 
-const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
+// const today = new Date();
+// const month = today.getMonth();
+// const year = today.getFullYear();
 
 
 @Component({
@@ -20,13 +20,13 @@ const year = today.getFullYear();
 export class AppComponent implements OnInit {
   title = 'inflation-tracker';
  
-  countries= countries
+  // countries= countries
   
 
-  dateRangeForm = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
+  // dateRangeForm = new FormGroup({
+  //   start: new FormControl(),
+  //   end: new FormControl(),
+  // });
 
   constructor(private inflationService: InflationService) {}
 
@@ -34,26 +34,26 @@ export class AppComponent implements OnInit {
   
  
   ngOnInit(): void {
-    this.inflationService.getInflationRates();
+    // this.inflationService.getInflationRates();
 
-    this.dateRangeForm.valueChanges.subscribe((date)=>{
-     if(date.start && date.end){
+    // this.dateRangeForm.valueChanges.subscribe((date)=>{
+    //  if(date.start && date.end){
 
-      const obj = { start:date.start, end:date.end };
+    //   const obj = { start:date.start, end:date.end };
 
-      this.fetchAPI(obj)
-     }
+    //   this.fetchAPI(obj)
+    //  }
      
-    })
+    // })
    
   }
 
-  fetchAPI(filters: Filters): void {
-     this.inflationService.getInflationRates(filters);
-  }
+  // fetchAPI(filters: Filters): void {
+  //    this.inflationService.getInflationRates(filters);
+  // }
 
-  countrySelected(event: any) {
-    this.fetchAPI({ country: event.value });
-  }
+  // countrySelected(event: any) {
+  //   this.fetchAPI({ country: event.value });
+  // }
   
 }

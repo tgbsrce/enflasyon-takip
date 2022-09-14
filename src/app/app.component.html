@@ -1,43 +1,12 @@
 
-<mat-tab-group animationDuration="1500ms">
+<mat-tab-group animationDuration="0ms">
   <mat-tab label="Charts">
     <div class="container my-3">
       <div class="row">
         <!-- Filters start -->
         <div class="col-md-3 align-self-center">
-           <!-- country filter start -->
-    <h4>Select Country</h4>
-    <mat-form-field appearance="fill">
-      <mat-label>Country</mat-label>
-      <mat-select (selectionChange)="countrySelected($event)">
-        <mat-option *ngFor="let item of countries" [value]="item.value">
-          {{item.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- country filter end -->
-    <!-- date filter start -->
-    <h4>Select Date Range</h4>
-    <form [formGroup]="dateRangeForm">
-
-      <mat-form-field (click)="picker.open()">
-  
-        <mat-label>Enter Session Period</mat-label>
-  
-        <mat-date-range-input [rangePicker]="picker"  >
-          <input matStartDate placeholder="From Date" required formControlName="start">
-          <input matEndDate placeholder="To Date" required formControlName="end">
-        </mat-date-range-input>
-  
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker  #picker></mat-date-range-picker>
-        
-  
-      </mat-form-field>
-      
-     
-  
-  </form>
+          <app-country-filter></app-country-filter>
+          <app-date-filter></app-date-filter>
         </div> 
         <!-- Filters end -->
         <!-- Line chart start -->
@@ -62,6 +31,8 @@
   <mat-tab label="Line"> <app-line></app-line> </mat-tab>
   <mat-tab label="Pie"> <app-pie></app-pie> </mat-tab>
   <mat-tab label="Bar"> <app-bar></app-bar> </mat-tab>
+  <mat-tab label="Country"><app-country-filter></app-country-filter></mat-tab>
+  <mat-tab label="Date"><app-date-filter></app-date-filter></mat-tab>
   
 </mat-tab-group>
 

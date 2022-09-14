@@ -8,7 +8,7 @@ import { InflationService } from '../../services/inflation.service';
   styleUrls: ['./line.component.css']
 })
 export class LineComponent  {
-  chartOption: EChartsOption = {
+  lineChartOption: EChartsOption = {
     xAxis: {
       type: 'category',
       boundaryGap: false,
