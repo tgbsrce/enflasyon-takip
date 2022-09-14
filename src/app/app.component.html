@@ -28,11 +28,47 @@
     </div>
     
   </mat-tab>
-  <mat-tab label="Line"> <app-line></app-line> </mat-tab>
-  <mat-tab label="Pie"> <app-pie></app-pie> </mat-tab>
-  <mat-tab label="Bar"> <app-bar></app-bar> </mat-tab>
-  <mat-tab label="Country"><app-country-filter></app-country-filter></mat-tab>
-  <mat-tab label="Date"><app-date-filter></app-date-filter></mat-tab>
+  <mat-tab label="Line"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 align-self-center">
+          <app-country-filter></app-country-filter>
+          <app-date-filter></app-date-filter>
+        </div>
+        <div class="col-md-8">
+          <app-line></app-line>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Pie">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 align-self-center">
+          <app-country-filter></app-country-filter>
+          <app-date-filter></app-date-filter>
+        </div>
+        <div class="col-md-8">
+          <app-pie></app-pie>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  
+  <mat-tab label="Bar"> 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 align-self-center">
+          <app-country-filter></app-country-filter>
+          <app-date-filter></app-date-filter>
+        </div>
+        <div class="col-md-8">
+          <app-bar></app-bar>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
   
 </mat-tab-group>
 
