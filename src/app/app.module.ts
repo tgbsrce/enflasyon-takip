@@ -20,9 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { CountryFilterComponent } from './components/country-filter/country-filter.component';
 import { DateFilterComponent } from './components/date-filter/date-filter.component';
 import { BarComponent } from './components/bar/bar.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { LineChartComponent } from './line-chart/line-chart.component';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 
 

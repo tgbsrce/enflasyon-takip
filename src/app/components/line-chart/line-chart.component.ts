@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { InflationService } from '../services/inflation.service';
+import { InflationService } from '../../services/inflation.service';
 
 @Component({
   selector: 'app-line-chart',
