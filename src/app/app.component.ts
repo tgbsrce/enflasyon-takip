@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxEchartsModule } from 'ngx-echarts';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InflationService } from './services/inflation.service';
-import { countries} from './models/country.model';
-import { Filters } from './models/filters.model';
 
-
-// const today = new Date();
-// const month = today.getMonth();
-// const year = today.getFullYear();
-
+export interface TabItem{
+  label:string;
+  route:string;
+}
 
 @Component({
   selector: 'app-root',
@@ -17,43 +12,34 @@ import { Filters } from './models/filters.model';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent{
   title = 'inflation-tracker';
+
+  constructor(private inflationService: InflationService) {} 
+
+  tabs:TabItem[] = [
+    {
+      label:'line',
+      route:'/line',
+    },
+    {
+      label:'bar',
+      route:'/bar',
+    },
+    {
+      label:'pie',
+      route:'/pie',
+    },
+    {
+      label:'country-filter',
+      route:'/country-filter',
+    },
+    {
+      label:'date-filter',
+      route:'/date-filter',
+    }
+    
+  ];
  
-  // countries= countries
-  
-
-  // dateRangeForm = new FormGroup({
-  //   start: new FormControl(),
-  //   end: new FormControl(),
-  // });
-
-  constructor(private inflationService: InflationService) {}
-
-  
-  
- 
-  ngOnInit(): void {
-    // this.inflationService.getInflationRates();
-
-    // this.dateRangeForm.valueChanges.subscribe((date)=>{
-    //  if(date.start && date.end){
-
-    //   const obj = { start:date.start, end:date.end };
-
-    //   this.fetchAPI(obj)
-    //  }
-     
-    // })
-   
-  }
-
-  // fetchAPI(filters: Filters): void {
-  //    this.inflationService.getInflationRates(filters);
-  // }
-
-  // countrySelected(event: any) {
-  //   this.fetchAPI({ country: event.value });
-  // }
   
 }

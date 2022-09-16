@@ -1,18 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BarComponent } from './components/bar/bar.component';
-import { LineComponent } from './components/line/line.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PieComponent } from './components/pie/pie.component';
-import { AppComponent } from './app.component';
+
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'home', component: AppComponent },
-  { path: 'line', component: LineComponent },
-  { path: 'bar', component: BarComponent },
-  { path:'pie', component:PieComponent},
-  { path: '**', component: NotFoundComponent},
+  
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+{
+  path:'bar',
+  loadChildren:() =>import('./components/bar/bar.module').then((m) =>m.BarModule)
+
+},
+{
+  path:'country-filter',
+  loadChildren:() =>import('./components/country-filter/country-filter.module').then((m) =>m.CountryFilterModule)
+
+},
+{
+  path:'date-filter',
+  loadChildren:() =>import('./components/date-filter/date-filter.module').then((m) =>m.DateFilterModule)
+
+},
+{
+  path:'line',
+  loadChildren:() =>import('./components/line/line.module').then((m) =>m.LineModule)
+
+},
+{
+  path:'pie',
+  loadChildren:()=>import('./components/pie/pie.module').then((m) =>m.PieModule)
+
+},
   
 ];
 
