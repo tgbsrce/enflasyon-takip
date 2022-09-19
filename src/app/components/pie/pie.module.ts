@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
-import { NgxEchartsModule } from 'ngx-echarts';
 import { CountryFilterModule } from '../country-filter/country-filter.module';
-import { DateFilterComponent } from '../date-filter/date-filter.component';
 import { DateFilterModule } from '../date-filter/date-filter.module';
-import { PieChartComponent } from '../pie-chart/pie-chart.component';
+import { PieChartModule } from '../pie-chart/pie-chart.module';
 import { PieComponent } from './pie.component';
 import { PieRoutingModule } from './pie.routing';
 
 @NgModule({
   imports: [
     PieRoutingModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
     CountryFilterModule,
     DateFilterModule,
+    PieChartModule,
   ],
   providers: [],
-  declarations: [PieChartComponent, PieComponent],
+  declarations: [PieComponent],
+  exports: [PieComponent],
 })
 export class PieModule {}
