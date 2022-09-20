@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Filters } from 'src/app/models/filters.model';
 import { InflationService } from 'src/app/services/inflation.service';
 @Component({
   selector: 'app-bar',
@@ -12,5 +13,11 @@ export class BarComponent implements OnInit {
     this.inflationService.inflationRates$.subscribe((rates) => {
       console.log('bar component inflationRates triggered!');
     });
+  }
+  fetchAPI(filters: Filters): void {
+    this.inflationService.getInflationRates(filters);
+  }
+  countrySelected(event: any): void {
+    this.fetchAPI({ country: event.value });
   }
 }

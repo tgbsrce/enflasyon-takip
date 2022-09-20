@@ -3,7 +3,7 @@
   <mat-label>Country</mat-label>
   <mat-select (selectionChange)="countrySelected($event)">
     <mat-option *ngFor="let item of countries" [value]="item.value">
-      {{item.viewValue}}
+      {{ item.viewValue }}
     </mat-option>
   </mat-select>
 </mat-form-field>

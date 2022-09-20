@@ -1,25 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { countries } from '../../models/country.model';
-import { Filters } from '../../models/filters.model';
-import { InflationService } from '../../services/inflation.service';
 
 @Component({
   selector: 'app-country-filter',
   templateUrl: './country-filter.component.html',
-  styleUrls: ['./country-filter.component.css']
+  styleUrls: ['./country-filter.component.css'],
 })
 export class CountryFilterComponent implements OnInit {
+  @Output() ChildEvent = new EventEmitter<any>();
+  countries = countries;
+  constructor() {}
 
-  countries= countries
-  constructor(private inflationService: InflationService) { }
-
-  ngOnInit(): void {
-  }
-
-  fetchAPI(filters: Filters): void {
-    this.inflationService.getInflationRates(filters);
- }
-  countrySelected(event: any) {
-    this.fetchAPI({ country: event.value });
+  ngOnInit(): void {}
+  countrySelected(event: any): void {
+    this.ChildEvent.emit(event);
   }
 }
