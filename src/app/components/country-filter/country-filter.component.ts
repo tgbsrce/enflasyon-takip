@@ -13,6 +13,6 @@ export class CountryFilterComponent implements OnInit {
 
   ngOnInit(): void {}
   countrySelected(event: any): void {
-    this.ChildEvent.emit(event);
+    this.ChildEvent.emit(event.value);
   }
 }

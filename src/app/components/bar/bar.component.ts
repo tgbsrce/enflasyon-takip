@@ -10,14 +10,19 @@ export class BarComponent implements OnInit {
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
-    this.inflationService.inflationRates$.subscribe((rates) => {
-      console.log('bar component inflationRates triggered!');
-    });
+    this.inflationService.getInflationRates();
   }
   fetchAPI(filters: Filters): void {
     this.inflationService.getInflationRates(filters);
   }
-  countrySelected(event: any): void {
-    this.fetchAPI({ country: event.value });
+  countrySelected(event: string): void {
+    this.fetchAPI({ country: event });
   }
+  dateSelected(event: DateParams): void {
+    this.fetchAPI(event);
+  }
+}
+interface DateParams {
+  start: Date;
+  end: Date;
 }

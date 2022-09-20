@@ -4,7 +4,9 @@
       <app-country-filter
         (ChildEvent)="countrySelected($event)"
       ></app-country-filter>
-      <app-date-filter></app-date-filter>
+      <app-date-filter
+        (DateChildEvent)="dateSelected($event)"
+      ></app-date-filter>
     </div>
     <div class="col-md-8">
       <app-bar-chart></app-bar-chart>
