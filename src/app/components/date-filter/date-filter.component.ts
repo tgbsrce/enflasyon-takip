@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Filters } from '../../models/filters.model';
-import { InflationService } from '../../services/inflation.service';
 
 const today = new Date();
 const month = today.getMonth();
