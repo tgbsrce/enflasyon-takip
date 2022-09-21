@@ -1,8 +1,12 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-md-3 align-self-center">
-      <app-country-filter></app-country-filter>
-      <app-date-filter></app-date-filter>
+      <app-country-filter
+        (ChildEvent)="countrySelected($event)"
+      ></app-country-filter>
+      <app-date-filter
+        (DateChildEvent)="dateSelected($event)"
+      ></app-date-filter>
     </div>
     <div class="col-md-3">
       <app-line-chart></app-line-chart>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { InflationService } from 'src/app/services/inflation.service';
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',

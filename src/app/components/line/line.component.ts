@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Filters } from 'src/app/models/filters.model';
 import { InflationService } from 'src/app/services/inflation.service';
 
@@ -16,8 +16,8 @@ export class LineComponent {
   fetchAPI(filters: Filters): void {
     this.inflationService.getInflationRates(filters);
   }
-  countrySelected(event: any): void {
-    this.fetchAPI({ country: event.value });
+  countrySelected(event: string): void {
+    this.fetchAPI({ country: event });
   }
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
