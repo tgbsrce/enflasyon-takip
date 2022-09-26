@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Filters } from 'src/app/models/filters.model';
+import { DateParams, Filters } from 'src/app/models/filters.model';
 import { InflationService } from 'src/app/services/inflation.service';
 
 @Component({
@@ -22,8 +22,4 @@ export class LineComponent {
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
   }
-}
-interface DateParams {
-  start: Date;
-  end: Date;
 }

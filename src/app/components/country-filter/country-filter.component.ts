@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import { countries } from '../../models/country.model';
 
 @Component({
@@ -7,12 +8,12 @@ import { countries } from '../../models/country.model';
   styleUrls: ['./country-filter.component.css'],
 })
 export class CountryFilterComponent implements OnInit {
-  @Output() ChildEvent = new EventEmitter<any>();
+  @Output() ChildEvent = new EventEmitter<string>();
   countries = countries;
   constructor() {}
 
   ngOnInit(): void {}
-  countrySelected(event: any): void {
+  countrySelected(event: MatSelectChange): void {
     this.ChildEvent.emit(event.value);
   }
 }

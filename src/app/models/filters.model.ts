@@ -9,3 +9,7 @@ export class Filters {
     this.end = data.end;
   }
 }
+export interface DateParams {
+  start: Date;
+  end: Date;
+}

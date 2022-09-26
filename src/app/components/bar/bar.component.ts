@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Filters } from 'src/app/models/filters.model';
+import { DateParams, Filters } from 'src/app/models/filters.model';
 import { InflationService } from 'src/app/services/inflation.service';
 @Component({
   selector: 'app-bar',
@@ -21,8 +21,4 @@ export class BarComponent implements OnInit {
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
   }
-}
-interface DateParams {
-  start: Date;
-  end: Date;
 }
