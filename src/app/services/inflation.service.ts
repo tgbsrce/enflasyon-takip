@@ -27,6 +27,8 @@ export class InflationService {
           this.filterState.country
       )
       .subscribe((response) => {
+        response = response.map((i) => new InflationData(i));
+
         if (!this.filterState.start || !this.filterState.end) {
           this.inflationRates.next(response);
           return;

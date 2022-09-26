@@ -1,30 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { LineData } from 'src/app/models/inflation.model';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css'],
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, OnChanges {
+  @Input() newData!: LineData;
   lineChartOption: EChartsOption = {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+      data: this.newData?.axisData || [],
     },
     yAxis: {
       type: 'value',
@@ -32,13 +27,18 @@ export class LineChartComponent implements OnInit {
 
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1430, 1550, 1200, 1650.145, 1680.189],
+        data: this.newData?.data || [],
         type: 'line',
         areaStyle: {},
       },
     ],
   };
   constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.newData = changes['newData']?.currentValue;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.newData);
+  }
 }
