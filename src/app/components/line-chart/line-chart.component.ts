@@ -5,7 +5,9 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { EChartsOption } from 'echarts';
 import { LineData } from 'src/app/models/inflation.model';
+import { createLineChartOptions } from 'src/app/utils/chartOptions';
 
 @Component({
   selector: 'app-line-chart',
@@ -14,37 +16,16 @@ import { LineData } from 'src/app/models/inflation.model';
 })
 export class LineChartComponent implements OnInit, OnChanges {
   @Input() newData!: LineData;
-  lineChartOption: any = {
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: this.newData?.axisData || [],
-    },
-    yAxis: {
-      type: 'value',
-    },
+  lineChartOption: EChartsOption = {};
 
-    series: [
-      {
-        data: this.newData?.data || [],
-        type: 'line',
-        areaStyle: {},
-      },
-    ],
-  };
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['newData']?.currentValue) {
-      this.newData = changes['newData']?.currentValue;
-      this.lineChartOption.xAxis.data = this.newData.axisData;
-      this.lineChartOption.series[0].data = this.newData.data;
-      this.lineChartOption = {...this.lineChartOption}
-      console.log(this.lineChartOption)
+      this.lineChartOption = createLineChartOptions(this.newData.axisData, this.newData.data);
     }
   }
 
   ngOnInit(): void {
-    console.log(this.newData);
   }
 }
