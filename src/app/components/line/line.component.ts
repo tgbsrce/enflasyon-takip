@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DateParams, Filters } from 'src/app/models/filters.model';
-import { LineData } from 'src/app/models/inflation.model';
+import { LineBarData } from 'src/app/models/inflation.model';
 import { InflationService } from 'src/app/services/inflation.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { InflationService } from 'src/app/services/inflation.service';
   styleUrls: ['./line.component.css'],
 })
 export class LineComponent {
-  newData: LineData = new LineData();
+  newData: LineBarData = new LineBarData();
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {

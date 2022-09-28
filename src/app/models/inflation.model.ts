@@ -15,12 +15,20 @@ export class InflationData {
     this.MonthFormatted = data.MonthFormatted || '';
   }
 }
-export class LineData {
+export class LineBarData {
   axisData: Array<string>;
   data: Array<number>;
 
   constructor() {
     this.axisData = [];
     this.data = [];
+  }
+}
+export class PieData {
+  value?: number;
+  name?: string;
+  constructor(data?: PieData) {
+    this.value = data?.value || 0;
+    this.name = data?.name || '';
   }
 }
