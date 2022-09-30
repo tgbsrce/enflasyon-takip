@@ -10,17 +10,13 @@ import { InflationService } from 'src/app/services/inflation.service';
 })
 export class LineComponent {
   newData: LineBarData = new LineBarData();
+  filter: Filters = {};
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
     this.inflationService.getInflationRates();
+    this.filter = this.getFilters();
     this.inflationService.inflationRates$.subscribe((rates) => {
-      // this.newData.axisData = rates.map((item) => {
-      //   return item.MonthFormatted;
-      // });
-      // this.newData.data = rates.map((item) => {
-      //   return item.InflationRateFormatted;
-      // });
       this.newData = {
         axisData: rates.map((i) => i.MonthFormatted),
         data: rates.map((i) => i.InflationRateFormatted),
@@ -38,5 +34,8 @@ export class LineComponent {
   }
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
+  }
+  getFilters(): Filters {
+    return this.inflationService.filterState;
   }
 }

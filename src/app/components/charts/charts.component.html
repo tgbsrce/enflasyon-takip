@@ -3,9 +3,11 @@
     <div class="col-md-3 align-self-center">
       <app-country-filter
         (ChildEvent)="countrySelected($event)"
+        [value]="filter.country"
       ></app-country-filter>
       <app-date-filter
         (DateChildEvent)="dateSelected($event)"
+        [value]="{ start: filter.start, end: filter.end }"
       ></app-date-filter>
     </div>
     <div class="col-md-3">

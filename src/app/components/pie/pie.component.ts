@@ -10,10 +10,12 @@ import { InflationService } from 'src/app/services/inflation.service';
 })
 export class PieComponent implements OnInit {
   newPieData: Array<PieData> = [];
+  filter: Filters = {};
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
     this.inflationService.getInflationRates();
+    this.filter = this.getFilters();
     this.inflationService.inflationRates$.subscribe((rates) => {
       for (var i = 0; i < rates.length; i++) {
         this.newPieData.push({
@@ -31,5 +33,8 @@ export class PieComponent implements OnInit {
   }
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
+  }
+  getFilters(): Filters {
+    return this.inflationService.filterState;
   }
 }

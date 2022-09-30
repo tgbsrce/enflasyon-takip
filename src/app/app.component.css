@@ -1,0 +1,7 @@
+.mat-tab-link{
+    color:#28282a;
+  }
+  .active-link {
+    color: #17a2b8;
+    background-color: #e6e9eb;
+}

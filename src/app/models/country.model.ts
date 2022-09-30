@@ -21,5 +21,4 @@ export const countries: Array<Country> = [
   { value: 'ukraine', viewValue: 'Ukraine' },
   { value: 'united - kingdom', viewValue: 'United - kingdom' },
   { value: 'united - states', viewValue: 'United - states' },
-  
 ];

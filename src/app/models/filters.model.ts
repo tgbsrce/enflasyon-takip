@@ -10,6 +10,6 @@ export class Filters {
   }
 }
 export interface DateParams {
-  start: Date;
-  end: Date;
+  start?: Date;
+  end?: Date;
 }
