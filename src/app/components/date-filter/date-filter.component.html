@@ -1,19 +1,19 @@
-<h4>Select Date Range</h4>
+<h4 class="text-info">Select Date Range</h4>
 <form [formGroup]="dateRangeForm">
-
   <mat-form-field (click)="picker.open()">
-
     <mat-label>Enter Session Period</mat-label>
 
-    <mat-date-range-input [rangePicker]="picker"  >
-      <input matStartDate placeholder="From Date" required formControlName="start">
-      <input matEndDate placeholder="To Date" required formControlName="end">
+    <mat-date-range-input [rangePicker]="picker">
+      <input
+        matStartDate
+        placeholder="From Date"
+        required
+        formControlName="start"
+      />
+      <input matEndDate placeholder="To Date" required formControlName="end" />
     </mat-date-range-input>
 
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker  #picker></mat-date-range-picker>
-    
-
+    <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
-  
 </form>
