@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="40">
+    <mat-toolbar class="login-toolbar">Login Page</mat-toolbar>
+    <form
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      class="login-form"
+      [formGroup]="userFormGroup"
+    >
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>people</mat-icon>
+        <input matInput formControlName="userName" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [type]="showPassword ? 'text' : 'password'"
+        />
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{ showPassword ? "visibility" : "visibility_off" }}</mat-icon
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        mat-button
+        type="submit"
+        class="login-button"
+        (click)="submitForm()"
+      >
+        LOGİN
+      </button>
+    </form>
+  </mat-card>
+</div>

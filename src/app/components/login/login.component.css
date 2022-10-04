@@ -1,0 +1,26 @@
+.main-div{
+    background-image: url(background.jpg);
+    background-size:cover;
+    
+}
+.main-div mat-card{
+    padding: 30px;
+    margin: 10px;
+   
+}
+.login-form{
+    padding: 20px;
+}
+.login-button{
+    margin: 5px;
+    color:rgb(75, 76, 77);
+    background: -webkit-linear-gradient(left top, rgb(144, 0, 255), rgb(207, 39, 176)); 
+            background: -o-linear-gradient(bottom right,  rgb(144, 0, 255), rgb(207, 39, 176)); 
+            background: -moz-linear-gradient(bottom right,  rgb(144, 0, 255), rgb(207, 39, 176));
+            background: linear-gradient(to bottom right,  rgb(144, 0, 255), rgb(207, 39, 176)); 
+
+}
+.login-toolbar{
+    color: rgb(51, 48, 48);
+    justify-content: center;
+}
