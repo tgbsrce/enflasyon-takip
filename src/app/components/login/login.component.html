@@ -7,18 +7,21 @@
       class="login-form"
       [formGroup]="userFormGroup"
     >
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
         <mat-icon matPrefix>people</mat-icon>
-        <input matInput formControlName="userName" />
+        <input matInput formControlName="userName" required />
+        <mat-error>Please enter username.</mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
         <input
           matInput
           formControlName="password"
           [type]="showPassword ? 'text' : 'password'"
+          required
         />
+        <mat-error>Please enter password.</mat-error>
         <mat-icon matSuffix (click)="togglePasswordVisibility()">
           {{ showPassword ? "visibility" : "visibility_off" }}</mat-icon
         >
@@ -28,7 +31,7 @@
         mat-button
         type="submit"
         class="login-button"
-        (click)="submitForm()"
+        (click)="onSubmit()"
       >
         LOGİN
       </button>

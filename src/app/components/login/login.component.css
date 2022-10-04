@@ -12,7 +12,9 @@
     padding: 20px;
 }
 .login-button{
-    margin: 5px;
+    max-width: 550px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     color:rgb(75, 76, 77);
     background: -webkit-linear-gradient(left top, rgb(144, 0, 255), rgb(207, 39, 176)); 
             background: -o-linear-gradient(bottom right,  rgb(144, 0, 255), rgb(207, 39, 176)); 
@@ -21,6 +23,8 @@
 
 }
 .login-toolbar{
-    color: rgb(51, 48, 48);
+    color: rgb(61, 4, 58);
+    max-width: 508px;
+    margin-left: 20px;
     justify-content: center;
 }

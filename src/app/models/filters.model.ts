@@ -13,3 +13,7 @@ export interface DateParams {
   start?: Date;
   end?: Date;
 }
+export interface User {
+  userName: string;
+  password: string;
+}

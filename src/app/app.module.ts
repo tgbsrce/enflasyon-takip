@@ -30,7 +30,6 @@ import { LoginModule } from './components/login/login.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatTabsModule,
     MatToolbarModule,
     MatSelectModule,
     MatDatepickerModule,

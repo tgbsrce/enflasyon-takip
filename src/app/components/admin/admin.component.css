@@ -1,0 +1,42 @@
+.example-container {
+    width: 100%;
+    height: 100%;
+   
+  }
+  .sidebar{
+    /* background-image: url(background.jpg); */
+    width: 350px;
+    background: -webkit-linear-gradient(left top, rgb(83, 27, 126),rgb(76, 11, 64)); 
+            background: -o-linear-gradient(bottom right,  rgb(83, 27, 126),rgb(76, 11, 64)); 
+            background: -moz-linear-gradient(bottom right,  rgb(83, 27, 126),rgb(76, 11, 64));
+            background: linear-gradient(to bottom right,  rgb(83, 27, 126),rgb(76, 11, 64)); 
+  }
+  .side-link{
+    text-decoration: none;
+    color: #9c4a79;
+    font-size: 20px;
+    margin: 20px 85px;
+    display:inline-block;
+  }
+  .sidebar-text{
+    color: #823663;
+    text-align: center;
+    font-size:30px;
+    font-weight: 500px;
+    margin-top: 50px;
+   
+  }
+  table {
+    height: auto;
+    width: 1100px;
+    margin-left:auto; 
+    margin-right:auto;
+    margin-top: 70px;
+  }
+  .admin-btn{
+    background-color: rgb(154, 150, 150);
+    color: #7a2a57;
+    float: right;
+    margin: 30px 60px;
+  }
+  

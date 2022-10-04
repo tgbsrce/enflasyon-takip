@@ -1,0 +1,14 @@
+.mat-tab-link{
+    color:#e03585;
+  }
+  .active-link {
+    color: #930378;
+    background-color: #e6e9eb;
+}
+.nav-wrapper{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+}
+
