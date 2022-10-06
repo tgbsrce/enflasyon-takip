@@ -1,0 +1,29 @@
+<div fxLayoutAlign="center" fxFlexFill class="main-div">
+  <mat-card fxFlex="60">
+    <mat-toolbar class="toolbar">Country and Date Filter</mat-toolbar>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 my-4 mx-auto">
+          <app-country-filter
+            [value]="filters.country"
+            (ChildEvent)="countrySelected($event)"
+          ></app-country-filter>
+          <app-date-filter
+            [value]="{ start: filters.start, end: filters.end }"
+            (DateChildEvent)="dateSelected($event)"
+          ></app-date-filter>
+          <button
+            mat-raised-button
+            mat-button
+            type="submit"
+            class="admin-button"
+            (click)="onSubmit()"
+          >
+            SAVE
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

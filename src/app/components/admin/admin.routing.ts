@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../../components/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'filtersettings',
+        loadChildren: () =>
+          import(
+            '../../components//filter-settings/filter-settings.module'
+          ).then((m) => m.FilterSettingsModule),
+      },
+    ],
   },
 ];
 @NgModule({

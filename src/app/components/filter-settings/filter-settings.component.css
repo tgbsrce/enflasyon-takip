@@ -1,0 +1,29 @@
+.main-div{
+    margin-top: 150px;
+}
+.main-div mat-card{
+    padding: 30px;
+    margin: 10px;
+    max-height: 400px;
+    border: 1px solid rgb(112, 106, 108);
+    border-radius: 2px;
+    box-shadow: 5px 4px 4px 4px rgb(207, 203, 203);
+   
+}
+.toolbar{
+    color: rgb(58, 12, 57);
+    justify-content: center;
+    background-color: rgb(232, 232, 232);
+    
+}
+.admin-button{
+    width: 210px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    color:rgb(75, 76, 77);
+    background: -webkit-linear-gradient(left top, rgb(144, 0, 255), rgb(207, 39, 176)); 
+            background: -o-linear-gradient(bottom right,  rgb(144, 0, 255), rgb(207, 39, 176)); 
+            background: -moz-linear-gradient(bottom right,  rgb(144, 0, 255), rgb(207, 39, 176));
+            background: linear-gradient(to bottom right,  rgb(144, 0, 255), rgb(207, 39, 176)); 
+    
+}

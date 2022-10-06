@@ -21,8 +21,9 @@ import { LineModule } from './components/line/line.module';
 import { BarChartModule } from './components/bar-chart/bar-chart.module';
 import { LineChartModule } from './components/line-chart/line-chart.module';
 import { PieChartModule } from './components/pie-chart/pie-chart.module';
-import { LoginComponent } from './components/login/login.component';
 import { LoginModule } from './components/login/login.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { FilterSettingsModule } from './components/filter-settings/filter-settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +49,8 @@ import { LoginModule } from './components/login/login.module';
     LineChartModule,
     PieChartModule,
     LoginModule,
+    DashboardModule,
+    FilterSettingsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
