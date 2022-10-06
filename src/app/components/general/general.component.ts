@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DateParams, Filters } from 'src/app/models/filters.model';
 import { LineBarData, PieData } from 'src/app/models/inflation.model';
+import { FilterService } from 'src/app/services/filter.service';
 import { InflationService } from 'src/app/services/inflation.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-general',
@@ -12,7 +14,14 @@ export class GeneralComponent implements OnInit {
   newData: LineBarData = new LineBarData();
   newPieData: Array<PieData> = [];
   filter: Filters = {};
-  constructor(private inflationService: InflationService) {}
+  constructor(
+    private inflationService: InflationService,
+    private filterService: FilterService
+  ) {
+    this.filterService.filters$.pipe(take(1)).subscribe((filters) => {
+      this.filter = filters;
+    });
+  }
 
   ngOnInit(): void {
     this.inflationService.getInflationRates();

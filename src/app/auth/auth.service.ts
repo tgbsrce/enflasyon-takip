@@ -1,24 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../models/filters.model';
+import { LoginResponse, User } from '../models/filters.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  tokenKey = 'token';
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-
+  get token() {
+    return localStorage.getItem(this.tokenKey);
+  }
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
-  login(user: User) {}
+  login(user: User): void {
+    this.http
+      .post<LoginResponse>('https://it-vis.herokuapp.com/login', user)
+      .subscribe((res) => {
+        localStorage.setItem(this.tokenKey, res.token);
+        this.loggedIn.next(true);
+        this.router.navigate(['/admin']);
+      });
+  }
 
   logout() {
     this.loggedIn.next(false);
-    this.router.navigate(['/']);
+    localStorage.removeItem(this.tokenKey);
+    this.router.navigate(['/charts/general']);
   }
 }

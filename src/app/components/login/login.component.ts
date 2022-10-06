@@ -11,9 +11,9 @@ import { User } from 'src/app/models/filters.model';
 export class LoginComponent {
   showPassword: boolean | undefined;
 
-  userCredentials: any = { userName: '', password: '' };
+  userCredentials: any = { username: '', password: '' };
   userFormGroup = new FormGroup({
-    userName: new FormControl(),
+    username: new FormControl(),
     password: new FormControl(),
   });
   constructor(private authService: AuthService) {}

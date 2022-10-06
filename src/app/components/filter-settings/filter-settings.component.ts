@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
 import { DateParams, Filters } from 'src/app/models/filters.model';
 import { FilterService } from 'src/app/services/filter.service';
 

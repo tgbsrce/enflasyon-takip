@@ -14,6 +14,9 @@ export interface DateParams {
   end?: Date;
 }
 export interface User {
-  userName: string;
+  username: string;
   password: string;
+}
+export interface LoginResponse {
+  token: string;
 }

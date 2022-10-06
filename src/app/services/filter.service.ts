@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Filters } from '../models/filters.model';
+import { AuthService } from '../auth/auth.service';
+import { map } from 'rxjs';
+import { UtilService } from '../util.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +12,18 @@ import { Filters } from '../models/filters.model';
 export class FilterService {
   private filters = new BehaviorSubject<Filters>(new Filters({}));
   filters$ = this.filters.asObservable();
+  constructor(private http: HttpClient, private utilService: UtilService) {}
 
   getFilter(): void {
     this.http
       .get<Filters>('https://it-vis.herokuapp.com/filters')
+      .pipe(
+        map((filters) => {
+          if (filters.start) filters.start = new Date(filters.start);
+          if (filters.end) filters.end = new Date(filters.end);
+          return filters;
+        })
+      )
       .subscribe((filters) => {
         this.filters.next(filters);
       });
@@ -22,8 +33,7 @@ export class FilterService {
       .put('https://it-vis.herokuapp.com/filters', filters)
       .subscribe(() => {
         this.filters.next(filters);
+        this.utilService.notify('İşlem başarılı :)');
       });
   }
-
-  constructor(private http: HttpClient) {}
 }
