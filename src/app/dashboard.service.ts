@@ -22,12 +22,52 @@ export class DashboardService {
         this.dashboards.next(dashboards);
       });
   }
-  setDashboard(dashboard: Dashboard): void {
+
+  getDashboard(id: string): void {
     this.http
-      .put('https://it-vis.herokuapp.com/dashboard', dashboard)
-      .subscribe(() => {
-        this.dashboards.next(dashboard);
+      .get<Dashboard>('https://it-vis.herokuapp.com/dashboard/' + id)
+      .subscribe((dashboard) => {
+        this.selectedDashboard.next(dashboard);
+      });
+  }
+
+  addDashboard(newDashboard: Dashboard): void {
+    this.http.post<Dashboard>('https://it-vis.herokuapp.com/dashboard', newDashboard)
+    .subscribe((dashboard) => {
+      const existingDashboard = this.dashboards.getValue();
+
+      this.dashboards.next([...existingDashboard, dashboard]);
+    })
+  }
+
+  setDashboard(dashboardToUpdate: Dashboard): void {
+    this.http
+      .put<Dashboard>('https://it-vis.herokuapp.com/dashboard', dashboardToUpdate)
+      .subscribe((dashboard) => {
+        const dashboardsFromState = this.dashboards.getValue();
+
+        const updatedDashboard = dashboardsFromState.find(i => i.id === dashboard.id);
+
+        if (updatedDashboard) {
+          updatedDashboard.name = dashboard.name;
+          updatedDashboard.charts = dashboard.charts;
+        }
+
+        this.dashboards.next(dashboardsFromState);
+
         this.utilService.notify('İşlem başarılı :)');
       });
+  }
+
+  deleteDashboard(id: string): void {
+    this.http.delete<void>('https://it-vis.herokuapp.com/dashboard/' + id)
+    .subscribe(() => {
+      const existingDashboard = this.dashboards.getValue();
+      const afterDeletion = existingDashboard.filter(i => i.id !== id);
+      
+      this.dashboards.next(afterDeletion);
+
+      this.utilService.notify("Dashboard silindi. :)");
+    })
   }
 }
