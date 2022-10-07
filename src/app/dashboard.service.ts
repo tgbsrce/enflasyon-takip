@@ -27,7 +27,7 @@ export class DashboardService {
     this.http
       .get<Dashboard>('https://it-vis.herokuapp.com/dashboard/' + id)
       .subscribe((dashboard) => {
-        this.selectedDashboard.next(dashboard);
+        this.selectedDashboard.next(new Dashboard(dashboard));
       });
   }
 
@@ -42,7 +42,7 @@ export class DashboardService {
 
   setDashboard(dashboardToUpdate: Dashboard): void {
     this.http
-      .put<Dashboard>('https://it-vis.herokuapp.com/dashboard', dashboardToUpdate)
+      .put<Dashboard>('https://it-vis.herokuapp.com/dashboard/' + dashboardToUpdate.id, dashboardToUpdate)
       .subscribe((dashboard) => {
         const dashboardsFromState = this.dashboards.getValue();
 

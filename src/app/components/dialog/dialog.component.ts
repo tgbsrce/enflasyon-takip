@@ -4,7 +4,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DashboardService } from 'src/app/dashboard.service';
 import { Dashboard } from 'src/app/models/dashboard.model';
@@ -15,14 +15,31 @@ import { Dashboard } from 'src/app/models/dashboard.model';
   styleUrls: ['./dialog.component.css'],
 })
 export class DialogComponent implements OnInit {
-  selectedDashboard$!: Observable<Dashboard>;
+  selectedDashboard: Dashboard = new Dashboard({});
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    public dialogRef: MatDialogRef<DialogComponent>,
   ) {}
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  chartTypes = [
+    "LINE CHART",
+    "PIE CHART",
+    "BAR CHART"
+  ];
+
+  ngOnInit(): void {
+    if (this.data?.id) {
+      this.dashboardService.selectedDashboard$.subscribe(dashboard => {
+        if(dashboard) {
+          this.selectedDashboard = dashboard as Dashboard;
+          this.chartTypes = this.chartTypes.filter(i => !this.selectedDashboard.charts.includes(i))
+        }
+      })
+      this.dashboardService.getDashboard(this.data.id);
+    }
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -41,9 +58,12 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    if (this.data.id) {
-      this.dashboardService.getDashboard(this.data.id);
-    }
+  save(): void {
+    if(this.selectedDashboard?.id)
+      this.dashboardService.setDashboard({ ...this.selectedDashboard })
+    else
+      this.dashboardService.addDashboard({... this.selectedDashboard});
+
+    this.dialogRef.close();
   }
 }

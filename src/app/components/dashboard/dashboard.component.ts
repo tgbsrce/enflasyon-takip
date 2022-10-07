@@ -34,4 +34,7 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+  addDashboard(): void {
+    this.matDialog.open(DialogComponent);
+  }
 }
