@@ -18,13 +18,15 @@ export class DateFilterComponent implements OnInit, OnChanges {
     end: new FormControl(),
   });
   @Output() DateChildEvent = new EventEmitter<DateParams>();
+  isPatched = false; // Temp Solution.
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const currentValue = changes['value']?.currentValue;
-    if (currentValue) {
+    if (currentValue && Object.values(currentValue).every(i => i) && !this.isPatched) {
       this.dateRangeForm.patchValue(currentValue)
+      this.isPatched = true;
     }
   }
 
