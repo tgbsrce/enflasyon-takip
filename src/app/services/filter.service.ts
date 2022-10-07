@@ -12,7 +12,10 @@ import { UtilService } from '../util.service';
 export class FilterService {
   private filters = new BehaviorSubject<Filters>(new Filters({}));
   filters$ = this.filters.asObservable();
-  constructor(private http: HttpClient, private utilService: UtilService) {}
+
+  constructor(private http: HttpClient, private utilService: UtilService) {
+    this.getFilter();
+  }
 
   getFilter(): void {
     this.http
@@ -35,5 +38,15 @@ export class FilterService {
         this.filters.next(filters);
         this.utilService.notify('İşlem başarılı :)');
       });
+  }
+
+  getFiltersFromState() : Filters {
+    return this.filters.getValue();
+  }
+
+  saveFilters(filters: Filters): void {
+    const currentFilters = this.filters.getValue();
+
+    this.filters.next({ ...currentFilters, ...filters });
   }
 }

@@ -14,18 +14,20 @@ export class GeneralComponent implements OnInit {
   newData: LineBarData = new LineBarData();
   newPieData: Array<PieData> = [];
   filter: Filters = {};
+
   constructor(
     private inflationService: InflationService,
     private filterService: FilterService
   ) {
-    this.filterService.filters$.pipe(take(1)).subscribe((filters) => {
-      this.filter = filters;
-    });
   }
 
   ngOnInit(): void {
     this.inflationService.getInflationRates();
-    this.filter = this.getFilters();
+    
+    this.filterService.filters$.subscribe(filter => {
+      this.filter = filter;
+    })
+
     this.inflationService.inflationRates$.subscribe((rates) => {
       this.newData = {
         axisData: rates.map((i) => i.MonthFormatted),
@@ -47,8 +49,5 @@ export class GeneralComponent implements OnInit {
   }
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
-  }
-  getFilters(): Filters {
-    return this.inflationService.filterState;
   }
 }

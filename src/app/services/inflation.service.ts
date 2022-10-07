@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Filters } from '../models/filters.model';
 import { InflationData } from '../models/inflation.model';
+import { FilterService } from './filter.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,25 +12,27 @@ export class InflationService {
   private inflationRates = new BehaviorSubject<InflationData[]>([]);
   inflationRates$ = this.inflationRates.asObservable();
 
-  filterState = new Filters({});
+  // Temp solution.
+  get filterState() {
+    return this.filterService.getFiltersFromState();
+  }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private filterService: FilterService) {}
 
   getInflationRates(filters?: Filters): void {
-    console.log(filters);
-    if (filters) {
-      this.filterState = { ...this.filterState, ...filters };
-    }
+    filters && this.filterService.saveFilters(filters);
+
+    const currentFilters = this.filterService.getFiltersFromState();
 
     this.http
       .get<InflationData[]>(
         'https://www.statbureau.org/get-data-json?country=' +
-          this.filterState.country
+        currentFilters.country
       )
       .subscribe((response) => {
         response = response.map((i) => new InflationData(i));
 
-        if (!this.filterState.start || !this.filterState.end) {
+        if (!currentFilters.start || !currentFilters.end) {
           this.inflationRates.next(response);
           return;
         }
@@ -37,10 +40,10 @@ export class InflationService {
         const filterResponse = response.filter((data) => {
           const inflationDate = new Date(data.MonthFormatted);
 
-          if (this.filterState.start && this.filterState.end) {
+          if (currentFilters.start && currentFilters.end) {
             return (
-              inflationDate >= this.filterState.start &&
-              inflationDate <= this.filterState.end
+              inflationDate >= currentFilters.start &&
+              inflationDate <= currentFilters.end
             );
           }
 
@@ -48,7 +51,6 @@ export class InflationService {
         });
 
         this.inflationRates.next(filterResponse);
-        console.log(filterResponse.length);
       });
   }
 }
