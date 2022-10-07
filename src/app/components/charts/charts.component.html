@@ -14,12 +14,25 @@
         <span>Bar</span>
       </a>
     </div>
-    <a mat-tab-link routerLink="/login" routerLinkActive="active-link">
+    <a
+      *ngIf="isLoggedIn$ | async; else loggedInTemplate"
+      mat-tab-link
+      routerLink="/login"
+      routerLinkActive="active-link"
+    >
       <span>Login</span>
     </a>
-    <a mat-tab-link routerLink="/admin" routerLinkActive="active-link">
-      <span>Admin</span>
-    </a>
+
+    <ng-template #loggedInTemplate>
+      <div>
+        <a mat-tab-link routerLink="/admin" routerLinkActive="active-link">
+          <span>Admin</span>
+        </a>
+        <a mat-tab-link routerLink="/logout" routerLinkActive="active-link">
+          <span>Logout</span>
+        </a>
+      </div>
+    </ng-template>
   </div>
 </nav>
 <router-outlet></router-outlet>

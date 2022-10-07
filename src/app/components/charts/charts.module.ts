@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BarChartModule } from '../bar-chart/bar-chart.module';
@@ -27,6 +28,7 @@ import { ChartsRoutingModule } from './charts.routing';
     BarModule,
     MatTabsModule,
     GeneralModule,
+    CommonModule,
   ],
   providers: [],
   declarations: [ChartsComponent],

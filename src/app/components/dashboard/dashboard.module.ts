@@ -5,6 +5,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard.routing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogModule } from '@angular/cdk/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -13,6 +16,9 @@ import { DashboardRoutingModule } from './dashboard.routing';
     MatButtonModule,
     MatTableModule,
     MatSidenavModule,
+    MatDialogModule,
+    DialogModule,
+    DragDropModule,
   ],
   providers: [],
   declarations: [DashboardComponent],

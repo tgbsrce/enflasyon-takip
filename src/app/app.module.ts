@@ -25,9 +25,12 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { FilterSettingsModule } from './components/filter-settings/filter-settings.module';
 import { AuthInterceptor } from './auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -53,6 +56,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     DashboardModule,
     FilterSettingsModule,
     MatSnackBarModule,
+    MatIconModule,
+    DragDropModule,
   ],
   providers: [
     {

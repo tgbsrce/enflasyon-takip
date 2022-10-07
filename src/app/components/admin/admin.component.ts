@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  constructor() {}
+  constructor(private router: ActivatedRoute, private route: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.router.params.subscribe((params) => {
+      if (Object.keys(params).length === 0) {
+        this.route.navigate(['dashboard'], { relativeTo: this.router });
+      }
+    });
+  }
 }
