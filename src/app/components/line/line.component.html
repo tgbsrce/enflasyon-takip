@@ -1,16 +1,6 @@
 <div class="container my-5">
   <div class="row">
-    <div class="col-md-4 align-self-center">
-      <app-country-filter
-        (ChildEvent)="countrySelected($event)"
-        [value]="filter.country"
-      ></app-country-filter>
-      <app-date-filter
-        (DateChildEvent)="dateSelected($event)"
-        [value]="{ start: filter.start, end: filter.end }"
-      ></app-date-filter>
-    </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <app-line-chart [newData]="newData"></app-line-chart>
     </div>
   </div>

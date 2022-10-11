@@ -6,7 +6,7 @@ import {
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { DashboardService } from 'src/app/dashboard.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { Dashboard } from 'src/app/models/dashboard.model';
 
 @Component({
@@ -20,23 +20,21 @@ export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dashboardService: DashboardService,
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<DialogComponent>
   ) {}
 
-  chartTypes = [
-    "LINE CHART",
-    "PIE CHART",
-    "BAR CHART"
-  ];
+  chartTypes = ['LINE CHART', 'PIE CHART', 'BAR CHART'];
 
   ngOnInit(): void {
     if (this.data?.id) {
-      this.dashboardService.selectedDashboard$.subscribe(dashboard => {
-        if(dashboard) {
+      this.dashboardService.selectedDashboard$.subscribe((dashboard) => {
+        if (dashboard) {
           this.selectedDashboard = dashboard as Dashboard;
-          this.chartTypes = this.chartTypes.filter(i => !this.selectedDashboard.charts.includes(i))
+          this.chartTypes = this.chartTypes.filter(
+            (i) => !this.selectedDashboard.charts.includes(i)
+          );
         }
-      })
+      });
       this.dashboardService.getDashboard(this.data.id);
     }
   }
@@ -59,10 +57,9 @@ export class DialogComponent implements OnInit {
   }
 
   save(): void {
-    if(this.selectedDashboard?.id)
-      this.dashboardService.setDashboard({ ...this.selectedDashboard })
-    else
-      this.dashboardService.addDashboard({... this.selectedDashboard});
+    if (this.selectedDashboard?.id)
+      this.dashboardService.setDashboard({ ...this.selectedDashboard });
+    else this.dashboardService.addDashboard({ ...this.selectedDashboard });
 
     this.dialogRef.close();
   }

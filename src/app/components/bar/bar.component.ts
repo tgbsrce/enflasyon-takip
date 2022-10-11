@@ -9,12 +9,9 @@ import { InflationService } from 'src/app/services/inflation.service';
 })
 export class BarComponent implements OnInit {
   newData: LineBarData = new LineBarData();
-  filter: Filters = {};
   constructor(private inflationService: InflationService) {}
 
   ngOnInit(): void {
-    this.inflationService.getInflationRates();
-    this.filter = this.getFilters();
     this.inflationService.inflationRates$.subscribe((rates) => {
       this.newData = {
         axisData: rates.map((i) => i.MonthFormatted),
@@ -30,8 +27,5 @@ export class BarComponent implements OnInit {
   }
   dateSelected(event: DateParams): void {
     this.fetchAPI(event);
-  }
-  getFilters(): Filters {
-    return this.inflationService.filterState;
   }
 }

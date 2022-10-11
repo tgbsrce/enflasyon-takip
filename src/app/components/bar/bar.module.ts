@@ -6,12 +6,7 @@ import { BarComponent } from './bar.component';
 import { BarRoutingModule } from './bar.routing';
 
 @NgModule({
-  imports: [
-    BarRoutingModule,
-    CountryFilterModule,
-    DateFilterModule,
-    BarChartModule,
-  ],
+  imports: [CountryFilterModule, DateFilterModule, BarChartModule],
   providers: [],
   declarations: [BarComponent],
   exports: [BarComponent],

@@ -17,7 +17,11 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+    if (this.token) {
+      this.loggedIn.next(true);
+    }
+  }
 
   login(user: User): void {
     this.http
@@ -32,6 +36,6 @@ export class AuthService {
   logout() {
     this.loggedIn.next(false);
     localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/charts/general']);
+    this.router.navigate(['/login']);
   }
 }

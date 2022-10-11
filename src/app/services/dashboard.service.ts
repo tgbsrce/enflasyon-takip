@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UtilService } from './util.service';
-import { Dashboard } from './models/dashboard.model';
+import { Dashboard } from '../models/dashboard.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class DashboardService {
 
   getDashboards(): void {
     this.http
-      .get<Array<Dashboard>>('https://it-vis.herokuapp.com/dashboard')
+      .get<Array<Dashboard>>(environment.API_URL + 'dashboard')
       .subscribe((dashboards) => {
         this.dashboards.next(dashboards);
       });
@@ -25,28 +26,34 @@ export class DashboardService {
 
   getDashboard(id: string): void {
     this.http
-      .get<Dashboard>('https://it-vis.herokuapp.com/dashboard/' + id)
+      .get<Dashboard>(environment.API_URL + 'dashboard/' + id)
       .subscribe((dashboard) => {
         this.selectedDashboard.next(new Dashboard(dashboard));
       });
   }
 
   addDashboard(newDashboard: Dashboard): void {
-    this.http.post<Dashboard>('https://it-vis.herokuapp.com/dashboard', newDashboard)
-    .subscribe((dashboard) => {
-      const existingDashboard = this.dashboards.getValue();
+    this.http
+      .post<Dashboard>(environment.API_URL + 'dashboard', newDashboard)
+      .subscribe((dashboard) => {
+        const existingDashboard = this.dashboards.getValue();
 
-      this.dashboards.next([...existingDashboard, dashboard]);
-    })
+        this.dashboards.next([...existingDashboard, dashboard]);
+      });
   }
 
   setDashboard(dashboardToUpdate: Dashboard): void {
     this.http
-      .put<Dashboard>('https://it-vis.herokuapp.com/dashboard/' + dashboardToUpdate.id, dashboardToUpdate)
+      .put<Dashboard>(
+        environment.API_URL + 'dashboard/' + dashboardToUpdate.id,
+        dashboardToUpdate
+      )
       .subscribe((dashboard) => {
         const dashboardsFromState = this.dashboards.getValue();
 
-        const updatedDashboard = dashboardsFromState.find(i => i.id === dashboard.id);
+        const updatedDashboard = dashboardsFromState.find(
+          (i) => i.id === dashboard.id
+        );
 
         if (updatedDashboard) {
           updatedDashboard.name = dashboard.name;
@@ -60,14 +67,15 @@ export class DashboardService {
   }
 
   deleteDashboard(id: string): void {
-    this.http.delete<void>('https://it-vis.herokuapp.com/dashboard/' + id)
-    .subscribe(() => {
-      const existingDashboard = this.dashboards.getValue();
-      const afterDeletion = existingDashboard.filter(i => i.id !== id);
-      
-      this.dashboards.next(afterDeletion);
+    this.http
+      .delete<void>(environment.API_URL + 'dashboard/' + id)
+      .subscribe(() => {
+        const existingDashboard = this.dashboards.getValue();
+        const afterDeletion = existingDashboard.filter((i) => i.id !== id);
 
-      this.utilService.notify("Dashboard silindi. :)");
-    })
+        this.dashboards.next(afterDeletion);
+
+        this.utilService.notify('Dashboard silindi. :)');
+      });
   }
 }

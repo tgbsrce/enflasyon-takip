@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Filters } from '../models/filters.model';
-import { AuthService } from '../auth/auth.service';
 import { map } from 'rxjs';
-import { UtilService } from '../util.service';
+import { UtilService } from './util.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class FilterService {
 
   getFilter(): void {
     this.http
-      .get<Filters>('https://it-vis.herokuapp.com/filters')
+      .get<Filters>(environment.API_URL + 'filters')
       .pipe(
         map((filters) => {
           if (filters.start) filters.start = new Date(filters.start);
@@ -32,15 +32,13 @@ export class FilterService {
       });
   }
   setFilter(filters: Filters): void {
-    this.http
-      .put('https://it-vis.herokuapp.com/filters', filters)
-      .subscribe(() => {
-        this.filters.next(filters);
-        this.utilService.notify('İşlem başarılı :)');
-      });
+    this.http.put(environment.API_URL + 'filters', filters).subscribe(() => {
+      this.filters.next(filters);
+      this.utilService.notify('İşlem başarılı :)');
+    });
   }
 
-  getFiltersFromState() : Filters {
+  getFiltersFromState(): Filters {
     return this.filters.getValue();
   }
 

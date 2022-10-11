@@ -4,18 +4,17 @@
       <a mat-tab-link routerLink="general" routerLinkActive="active-link">
         <span>Charts</span>
       </a>
-      <a mat-tab-link routerLink="line" routerLinkActive="active-link">
-        <span>Line</span>
-      </a>
-      <a mat-tab-link routerLink="pie" routerLinkActive="active-link">
-        <span>Pie</span>
-      </a>
-      <a mat-tab-link routerLink="bar" routerLinkActive="active-link">
-        <span>Bar</span>
+      <a
+        *ngFor="let dashboard of dashboards$ | async"
+        mat-tab-link
+        [routerLink]="'dashboard/' + dashboard.id"
+        routerLinkActive="active-link"
+      >
+        <span>{{ dashboard.name }}</span>
       </a>
     </div>
     <a
-      *ngIf="isLoggedIn$ | async; else loggedInTemplate"
+      *ngIf="!(isLoggedIn$ | async); else loggedInTemplate"
       mat-tab-link
       routerLink="/login"
       routerLinkActive="active-link"
@@ -28,7 +27,7 @@
         <a mat-tab-link routerLink="/admin" routerLinkActive="active-link">
           <span>Admin</span>
         </a>
-        <a mat-tab-link routerLink="/logout" routerLinkActive="active-link">
+        <a mat-tab-link routerLinkActive="active-link" (click)="exit()">
           <span>Logout</span>
         </a>
       </div>

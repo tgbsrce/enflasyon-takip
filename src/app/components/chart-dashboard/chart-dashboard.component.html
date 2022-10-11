@@ -1,0 +1,15 @@
+<div *ngIf="selectedDashboard$ | async as selectedDashboard">
+  <div class="chart-wrapper">
+    <div *ngFor="let item of selectedDashboard.charts" class="chart-item">
+      <div *ngIf="'LINE CHART' === item">
+        <app-line></app-line>
+      </div>
+      <div *ngIf="'PIE CHART' === item">
+        <app-pie></app-pie>
+      </div>
+      <div *ngIf="'BAR CHART' === item">
+        <app-bar></app-bar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,12 +7,7 @@ import { LineComponent } from './line.component';
 import { LineRoutingModule } from './line.routing';
 
 @NgModule({
-  imports: [
-    LineRoutingModule,
-    CountryFilterModule,
-    DateFilterModule,
-    LineChartModule,
-  ],
+  imports: [CountryFilterModule, DateFilterModule, LineChartModule],
   providers: [],
   declarations: [LineComponent],
   exports: [LineComponent],

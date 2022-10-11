@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { DashboardService } from 'src/app/dashboard.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Dashboard } from 'src/app/models/dashboard.model';
 

@@ -28,6 +28,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ChartDashboardComponent } from './components/chart-dashboard/chart-dashboard.component';
+import { ChartDashboardModule } from './components/chart-dashboard/chart-dashboard.module';
 
 @NgModule({
   declarations: [AppComponent, DialogComponent],
@@ -58,6 +60,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSnackBarModule,
     MatIconModule,
     DragDropModule,
+    ChartDashboardModule,
   ],
   providers: [
     {

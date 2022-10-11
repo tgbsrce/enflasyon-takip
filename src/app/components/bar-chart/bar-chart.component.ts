@@ -15,21 +15,7 @@ import { createBarChartOptions } from 'src/app/utils/chartOptions';
 })
 export class BarChartComponent implements OnInit, OnChanges {
   @Input() newData!: LineBarData;
-  barChartOption: EChartsOption = {
-    // xAxis: {
-    //   type: 'category',
-    //   data: this.newData?.axisData || [],
-    // },
-    // yAxis: {
-    //   type: 'value',
-    // },
-    // series: [
-    //   {
-    //     data: this.newData?.data || [],
-    //     type: 'bar',
-    //   },
-    // ],
-  };
+  barChartOption: EChartsOption = {};
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['newData']?.currentValue) {

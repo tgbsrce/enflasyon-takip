@@ -8,26 +8,18 @@ const routes: Routes = [
     component: ChartsComponent,
     children: [
       {
-        path: 'bar',
-        loadChildren: () =>
-          import('../../components/bar/bar.module').then((m) => m.BarModule),
-      },
-      {
-        path: 'line',
-        loadChildren: () =>
-          import('../../components/line/line.module').then((m) => m.LineModule),
-      },
-      {
-        path: 'pie',
-        loadChildren: () =>
-          import('../../components/pie/pie.module').then((m) => m.PieModule),
-      },
-      {
         path: 'general',
         loadChildren: () =>
           import('../../components/general/general.module').then(
             (m) => m.GeneralModule
           ),
+      },
+      {
+        path: 'dashboard/:id',
+        loadChildren: () =>
+          import(
+            '../../components/chart-dashboard/chart-dashboard.module'
+          ).then((m) => m.ChartDashboardModule),
       },
     ],
   },
